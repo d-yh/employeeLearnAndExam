@@ -1,0 +1,422 @@
+#app {
+
+  @import "~@/styles/mixin.scss";
+  @import "~@/styles/variables.scss";
+
+  .main-container {
+    width: 100%;
+    height: 100%;
+    padding-left: $sideBarWidth;
+  }
+
+  .fixed-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    transition: width 0.28s;
+  }
+
+  .hideSidebar {
+    .fixed-header {
+      // width: calc(100% - 54px)
+      width: 100%;
+    }
+    .main-container{
+      padding-left: $hideSideBarWidth !important;
+    }
+    .sidebar-container {
+      width: $hideSideBarWidth !important;
+    }
+    .submenu-title-noDropdown {
+      padding: 0 !important;
+      position: relative;
+  
+      .el-tooltip {
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center;
+        .svg-icon {
+          margin-left: 20px;
+        }
+      }
+    }
+  
+    .el-submenu {
+      overflow: hidden;
+  
+      &>.el-submenu__title {
+        padding: 0 !important;
+  
+        .svg-icon {
+          margin-left: 20px;
+        }
+  
+        .sub-el-icon {
+          margin-left: 19px;
+        }
+  
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+  
+    .el-menu--collapse {
+      .el-submenu {
+        &>.el-submenu__title {
+          &>span {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .el-tooltip{
+      .sub-el-icon{
+        margin: 0 8px;
+        transition: all .3s;
+      }
+    }
+    .hamburger-container{
+      padding: 0 8px;
+      .text{
+        flex: 0 0 0%;
+        overflow: hidden;
+        display: none;
+      }
+    }
+  }
+  .mobile .fixed-header {
+    width: 100%;
+  }
+
+  .navbar {
+    height: $headerHeight;
+    background-image: linear-gradient(90deg,rgba(#22f3ad, .85),rgba(#004d85, .85));
+    backdrop-filter: blur(10px) saturate(90%);
+    color: rgba(white, .9);
+    box-shadow: 0 0 15px rgba(#001a30, 0.2);
+
+    .breadcrumb-container {
+      float: left;
+    }
+
+    .right-menu {
+
+      &:focus {
+        outline: none;
+      }
+
+      .right-menu-item {
+        display: inline-block;
+        padding: 0 8px;
+        height: 100%;
+        font-size: 18px;
+        color: #5a5e66;
+        vertical-align: text-bottom;
+
+        &.hover-effect {
+          cursor: pointer;
+          transition: all 0.3s;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.025);
+          }
+        }
+      }
+    }
+    .logo-container {
+      position: relative;
+      width: $sideBarWidth;
+      height: 100%;
+      text-align: center;
+      vertical-align: middle;
+      overflow: hidden;
+    
+      & .logo-link {
+        width: 100%;
+        display: inline;
+        & .logo {
+          width: 100%;
+          vertical-align: middle;
+        }
+      }
+    
+      &.collapse {
+        .logo {
+          margin-right: 0px;
+        }
+      }
+    }
+    .title{
+      font-size: 1.2rem;
+      letter-spacing: .1rem;
+    }
+    .message-link{
+      padding: 5px;
+      color: rgba(#fff,.85);
+      background-color: transparent;
+      border: none;
+      position: relative;
+      &:hover{
+        color: #fff;
+      }
+    }
+    .v-modal{
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    height: calc(100% - #{$headerHeight});
+    background-color: $menuBg;
+    position: fixed;
+    font-size: 0px;
+    top: $headerHeight;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 101;
+    box-shadow: rgb(#000, 8%) 0px 0px 20px;
+    padding: .5rem;
+    .el-menu-item{
+      padding: 0 1rem !important;
+      transition: all .3s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // reset element-ui css
+  .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  }
+
+  .scrollbar-wrapper {
+    overflow-x: hidden !important;
+  }
+
+  .el-scrollbar__bar.is-vertical {
+    right: 0px;
+  }
+
+  .el-scrollbar {
+    width: 100%;
+    height: calc(100% - #{$hamburgerHeight});
+  }
+
+  &.has-logo {
+    .el-scrollbar {
+      height: calc(100% - 50px);
+    }
+  }
+
+  .is-horizontal {
+    display: none;
+  }
+  .svg-icon {
+    margin-right: 16px;
+  }
+
+  .sub-el-icon {
+    margin-right: 12px;
+    margin-left: -2px;
+    transition: all .3s;
+    line-height: 1em;
+  }
+
+  .el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+  }
+
+  // menu hover
+  .submenu-title-noDropdown,
+  .el-submenu__title {
+    &:hover {
+      background-color: $menuHover !important;
+    }
+  }
+
+  .is-active>.el-submenu__title {
+    color: $subMenuActiveText !important;
+  }
+
+  & .nest-menu .el-submenu>.el-submenu__title,
+  & .el-submenu .el-menu-item {
+    font-size: 1rem;
+    min-width: $sideBarWidth !important;
+    background-color: $subMenuBg !important;
+
+    &:hover {
+      background-color: $subMenuHover !important;
+    }
+  }
+
+  .hamburger-container {
+    width: 100%;
+    height: $hamburgerHeight;
+    line-height: $hamburgerHeight;
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    &:hover {
+      background: $subMenuHover;
+    }
+    svg{
+      flex-shrink: 0;
+    }
+    .text{
+      flex: 1 0 0%;
+      white-space: nowrap;
+      padding: 0 12px;
+    }
+  }
+}
+
+
+.el-menu--collapse .el-menu .el-submenu {
+  min-width: $sideBarWidth !important;
+}
+
+// mobile responsive
+.mobile {
+  .main-container {
+    margin-left: 0px;
+  }
+
+  .sidebar-container {
+    transition: transform .28s;
+    width: $sideBarWidth !important;
+  }
+
+  &.hideSidebar {
+    .sidebar-container {
+      pointer-events: none;
+      transition-duration: 0.3s;
+      transform: translate3d(-$sideBarWidth, 0, 0);
+    }
+  }
+}
+
+.app-main {
+  height: 100%;
+  padding-top: $headerHeight;
+  position: relative;
+}
+
+// fix css style bug in open el-dialog
+.el-popup-parent--hidden {
+  .fixed-header {
+    padding-right: 15px;
+  }
+}
+
+.withoutAnimation {
+
+  .main-container,
+  .sidebar-container {
+    transition: none;
+  }
+}
+
+
+// when menu collapsed
+.el-menu--vertical {
+  &>.el-menu {
+    .svg-icon {
+      margin-right: 16px;
+    }
+
+    .sub-el-icon {
+      margin-right: 12px;
+      margin-left: -2px;
+    }
+  }
+
+  .nest-menu .el-submenu>.el-submenu__title,
+  .el-menu-item {
+    transition: all .3s;
+    &:hover {
+      // you can use $subMenuHover
+      background-color: $menuHover !important;
+    }
+  }
+
+  // the scroll bar appears when the subMenu is too long
+  >.el-menu--popup {
+    max-height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track-piece {
+      background: #d3dce6;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #99a9bf;
+      border-radius: 20px;
+    }
+  }
+}
+
+.sidebarLogoFade-enter-active {
+  transition: opacity 1.5s;
+}
+
+.sidebarLogoFade-enter,
+.sidebarLogoFade-leave-to {
+  opacity: 0;
+}
+
+
+.item_icon {
+  margin-right: 10px;
+}
+
+.show-pwd {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  font-size: 16px;
+  color: #889aa4;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.app-wrapper {
+  @include clearfix;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &.mobile.openSidebar {
+    position: fixed;
+    top: 0;
+  }
+}
+
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+}
